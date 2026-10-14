@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>开发者必备：如何优雅地开启、查询和关闭 Git 代理 | Miles的技术分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在进行开源项目开发或从 GitHub 拉取代码时，网络问题常常会让人头疼。通过配置 Git 代理，我们可以顺畅地加速代码的克隆与拉取。本文将带你快速掌握如何针对全局或特定仓库配置、查看以及清理 Git 代理。 -– 一、 前提条件在配置代理之前，你需要确认两件事：  本地代理软件已运行：例如 Clash、V2Ray、Shadowrocket 等。 代理软件监听的端口：默认通常是 7890、1080">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发者必备：如何优雅地开启、查询和关闭 Git 代理">
+<meta property="og:url" content="http://lingqin.github.io/2026/10/14/git_proxy_guide/index.html">
+<meta property="og:site_name" content="Miles的技术分享">
+<meta property="og:description" content="在进行开源项目开发或从 GitHub 拉取代码时，网络问题常常会让人头疼。通过配置 Git 代理，我们可以顺畅地加速代码的克隆与拉取。本文将带你快速掌握如何针对全局或特定仓库配置、查看以及清理 Git 代理。 -– 一、 前提条件在配置代理之前，你需要确认两件事：  本地代理软件已运行：例如 Clash、V2Ray、Shadowrocket 等。 代理软件监听的端口：默认通常是 7890、1080">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-14T02:41:52.466Z">
+<meta property="article:modified_time" content="2026-10-14T02:48:16.004Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Miles的技术分享" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Miles的技术分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://lingqin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-git_proxy_guide" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/14/git_proxy_guide/" class="article-date">
+  <time class="dt-published" datetime="2026-10-14T02:41:52.466Z" itemprop="datePublished">2026-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      开发者必备：如何优雅地开启、查询和关闭 Git 代理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在进行开源项目开发或从 GitHub 拉取代码时，网络问题常常会让人头疼。通过配置 Git 代理，我们可以顺畅地加速代码的克隆与拉取。本文将带你快速掌握如何针对全局或特定仓库配置、查看以及清理 Git 代理。</p>
+<p>-–</p>
+<h2 id="一、-前提条件"><a href="#一、-前提条件" class="headerlink" title="一、 前提条件"></a>一、 前提条件</h2><p>在配置代理之前，你需要确认两件事：</p>
+<ol>
+<li><strong>本地代理软件已运行</strong>：例如 Clash、V2Ray、Shadowrocket 等。</li>
+<li><strong>代理软件监听的端口</strong>：默认通常是 <code>7890</code>、<code>10809</code> 或 <code>10808</code>（请根据你实际使用的软件设置进行调整）。</li>
+</ol>
+<p>-–</p>
+<h2 id="二、-开启-Git-代理"><a href="#二、-开启-Git-代理" class="headerlink" title="二、 开启 Git 代理"></a>二、 开启 Git 代理</h2><p>根据你的需求，代理可以设置为<strong>全局生效</strong>（所有 Git 仓库）或<strong>仅当前仓库生效</strong>。</p>
+<h3 id="1-全局配置代理（推荐用于日常开发）"><a href="#1-全局配置代理（推荐用于日常开发）" class="headerlink" title="1. 全局配置代理（推荐用于日常开发）"></a>1. 全局配置代理（推荐用于日常开发）</h3><p>打开终端（Terminal 或 CMD&#x2F;PowerShell），运行以下命令。请将 <code>7890</code> 替换为你本地代理软件实际的端口号。</p>
+<h4 id="支持-HTTP-HTTPS-协议："><a href="#支持-HTTP-HTTPS-协议：" class="headerlink" title="支持 HTTP &#x2F; HTTPS 协议："></a>支持 HTTP &#x2F; HTTPS 协议：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+<h4 id="支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）："><a href="#支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）：" class="headerlink" title="支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）："></a>支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+<p>-–</p>
+<h3 id="2-局部配置代理（仅对当前仓库生效）"><a href="#2-局部配置代理（仅对当前仓库生效）" class="headerlink" title="2. 局部配置代理（仅对当前仓库生效）"></a>2. 局部配置代理（仅对当前仓库生效）</h3><p>如果你只想让某个特定的仓库走代理，进入该仓库的根目录，去掉 <code>--global</code> 参数执行即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.proxy http://127.0.0.1:7890</span><br><span class="line">git config https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+<p>-–</p>
+<h2 id="三、-查询当前的-Git-代理状态"><a href="#三、-查询当前的-Git-代理状态" class="headerlink" title="三、 查询当前的 Git 代理状态"></a>三、 查询当前的 Git 代理状态</h2><p>如果不确定当前是否已经成功配置了代理，或者想检查代理的端口是否正确，可以通过以下命令进行查询。</p>
+<h3 id="1-查询全局代理配置"><a href="#1-查询全局代理配置" class="headerlink" title="1. 查询全局代理配置"></a>1. 查询全局代理配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查询当前仓库代理配置"><a href="#2-查询当前仓库代理配置" class="headerlink" title="2. 查询当前仓库代理配置"></a>2. 查询当前仓库代理配置</h3><p>在仓库目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --get http.proxy</span><br><span class="line">git config --get https.proxy</span><br></pre></td></tr></table></figure>
+
+<p><em>注：如果终端没有任何输出，说明当前级别下没有设置代理。</em></p>
+<p>-–</p>
+<h2 id="四、-关闭与清除-Git-代理"><a href="#四、-关闭与清除-Git-代理" class="headerlink" title="四、 关闭与清除 Git 代理"></a>四、 关闭与清除 Git 代理</h2><p>当网络环境改善，或者代理软件关闭导致 Git 出现 <code>Connection refused</code> 报错时，我们需要及时关闭或清除代理配置。</p>
+<h3 id="1-全局清除代理"><a href="#1-全局清除代理" class="headerlink" title="1. 全局清除代理"></a>1. 全局清除代理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-局部清除代理"><a href="#2-局部清除代理" class="headerlink" title="2. 局部清除代理"></a>2. 局部清除代理</h3><p>在对应的仓库目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<p>-–</p>
+<h2 id="五、-常见排错小贴士"><a href="#五、-常见排错小贴士" class="headerlink" title="五、 常见排错小贴士"></a>五、 常见排错小贴士</h2><ol>
+<li><strong>SSL证书验证失败</strong>：<br>如果在开启代理后出现 <code>SSL certificate problem: self signed certificate in certificate chain</code> 报错，可以临时关闭 Git 的 SSL 校验（请注意安全风险）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>GitHub 走 SSH 协议不生效</strong>：<br>本文介绍的 <code>http.proxy</code> 仅对 <code>http://</code> 和 <code>https://</code> 开头的仓库链接生效。如果你的远程仓库使用的是 <code>git@github.com:...</code> 这种 SSH 链接，需要通过修改 <code>\~/.ssh/config</code> 文件来配置 ProxyCommand。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lingqin.github.io/2026/10/14/git_proxy_guide/" data-id="cuidLb8ZfQ81H5cxDqZ5spB6i" data-title="开发者必备：如何优雅地开启、查询和关闭 Git 代理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/10/14/%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8-GitHub-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">零基础使用 GitHub + Hexo 搭建个人博客完全指南</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/14/git_proxy_guide/">开发者必备：如何优雅地开启、查询和关闭 Git 代理</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/14/%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8-GitHub-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">零基础使用 GitHub + Hexo 搭建个人博客完全指南</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
