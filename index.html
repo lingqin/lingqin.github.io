@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Miles的技术分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Miles的技术分享">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Miles的技术分享">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Miles的技术分享" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Miles的技术分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-利用github-hexo搭建博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/14/%E5%88%A9%E7%94%A8github-hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2026-10-14T01:46:19.753Z" itemprop="datePublished">2026-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="零基础使用-GitHub-Hexo-搭建个人博客完全指南"><a href="#零基础使用-GitHub-Hexo-搭建个人博客完全指南" class="headerlink" title="零基础使用 GitHub + Hexo 搭建个人博客完全指南"></a>零基础使用 GitHub + Hexo 搭建个人博客完全指南</h1><p>欢迎开启个人独立博客的搭建之旅！本教程将带你从零开始，使用 <strong>Hexo</strong>（一个快速、简洁且高效的博客框架）和 <strong>GitHub Pages</strong>（免费的静态网页托管服务）搭建属于自己的个人博客。</p>
+<hr>
+<h2 id="一、-准备工作"><a href="#一、-准备工作" class="headerlink" title="一、 准备工作"></a>一、 准备工作</h2><p>在开始之前，请确保你的电脑上已经安装了以下工具：</p>
+<ol>
+<li><strong>Node.js</strong>（Hexo 基于 Node.js 运行）：建议安装 LTS（长期支持）版本。<ul>
+<li>验证安装：打开终端（Windows 的 <code>cmd</code> 或 PowerShell，Mac&#x2F;Linux 的 Terminal），输入 <code>node -v</code> 和 <code>npm -v</code>，若能正常显示版本号则说明安装成功。</li>
+</ul>
+</li>
+<li><strong>Git</strong>（用于版本控制并将代码推送到 GitHub）：<ul>
+<li>验证安装：输入 <code>git --version</code>。</li>
+</ul>
+</li>
+<li><strong>GitHub 账号</strong>：如果没有，请前往 <a target="_blank" rel="noopener" href="https://github.com/">GitHub 官网</a> 免费注册一个。</li>
+</ol>
+<hr>
+<h2 id="二、-安装-Hexo"><a href="#二、-安装-Hexo" class="headerlink" title="二、 安装 Hexo"></a>二、 安装 Hexo</h2><p>打开终端，选择一个你喜欢的盘符或文件夹，执行以下命令全局安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，输入 <code>hexo version</code> 检查是否安装成功。</p>
+<hr>
+<h2 id="三、-初始化-Hexo-博客"><a href="#三、-初始化-Hexo-博客" class="headerlink" title="三、 初始化 Hexo 博客"></a>三、 初始化 Hexo 博客</h2><ol>
+<li><p><strong>创建博客本地文件夹</strong>：<br>在电脑的合适位置（例如 <code>D:\MyBlog</code> 或 Mac 的 <code>~/Documents/MyBlog</code>）打开终端，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init my-blog</span><br><span class="line"><span class="built_in">cd</span> my-blog</span><br></pre></td></tr></table></figure>
+
+<p><em>(注：<code>my-blog</code> 是你的本地博客项目文件夹名称，你可以自定义)</em></p>
+</li>
+<li><p><strong>安装依赖包</strong>：<br>在项目文件夹下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>本地预览博客</strong>：<br>运行以下命令启动本地服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"><span class="comment"># 或完整写法：hexo server</span></span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器，访问 <code>http://localhost:4000</code>，你就能看到 Hexo 的默认初始页面了。<br><em>(提示：在终端按下 <code>Ctrl + C</code> 可以停止本地服务器)</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="四、-配置-GitHub-仓库与部署"><a href="#四、-配置-GitHub-仓库与部署" class="headerlink" title="四、 配置 GitHub 仓库与部署"></a>四、 配置 GitHub 仓库与部署</h2><h3 id="1-创建-GitHub-Pages-仓库"><a href="#1-创建-GitHub-Pages-仓库" class="headerlink" title="1. 创建 GitHub Pages 仓库"></a>1. 创建 GitHub Pages 仓库</h3><ol>
+<li>登录 GitHub，点击右上角的 <code>+</code> 号，选择 <strong>New repository</strong>。</li>
+<li><strong>Repository name</strong> 填写：<code>你的用户名.github.io</code>（例如你的 GitHub 用户名是 <code>johndoe</code>，仓库名必须严格写为 <code>johndoe.github.io</code>）。</li>
+<li>选择 <strong>Public</strong>（公开）。</li>
+<li><strong>不要</strong>勾选 “Add a README file”（保持干净）。</li>
+<li>点击 <strong>Create repository</strong>。</li>
+</ol>
+<h3 id="2-配置-Git-身份信息（若未配置过）"><a href="#2-配置-Git-身份信息（若未配置过）" class="headerlink" title="2. 配置 Git 身份信息（若未配置过）"></a>2. 配置 Git 身份信息（若未配置过）</h3><p>在终端中运行以下命令绑定你的 GitHub 账号信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的GitHub用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置-Hexo-的部署目标"><a href="#3-配置-Hexo-的部署目标" class="headerlink" title="3. 配置 Hexo 的部署目标"></a>3. 配置 Hexo 的部署目标</h3><p>打开你的博客根目录，找到 <code>_config.yml</code> 文件（Hexo 的总配置文件），用文本编辑器（如 VS Code、Notepad++ 等）打开它。</p>
+<p>滚动拉到文件最底部（Deployment 部分），修改为如下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/你的用户名/你的用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span> </span><br></pre></td></tr></table></figure>
+
+<p><em>(注意：YAML 文件的缩进非常严格，冒号后面必须带一个空格！)</em></p>
+<h3 id="4-安装-Git-部署插件"><a href="#4-安装-Git-部署插件" class="headerlink" title="4. 安装 Git 部署插件"></a>4. 安装 Git 部署插件</h3><p>在终端的博客根目录下运行以下命令，以便 Hexo 能自动将文件推送到 GitHub：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、-生成并部署博客"><a href="#五、-生成并部署博客" class="headerlink" title="五、 生成并部署博客"></a>五、 生成并部署博客</h2><p>一切准备就绪后，只需在终端依次运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 清理缓存和已生成的静态文件</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 生成静态网页文件</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 部署到 GitHub</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p><em>(注：执行 <code>hexo d</code> 时，终端可能会弹窗要求你输入 GitHub 账号密码或 Personal Access Token。现代 GitHub 推荐使用 Token 认证。)</em></p>
+<p>部署成功后，等待 1-2 分钟，在浏览器中输入 <code>https://你的用户名.github.io</code>，即可访问你的专属个人博客！</p>
+<hr>
+<h2 id="六、-日常写博客与管理流程"><a href="#六、-日常写博客与管理流程" class="headerlink" title="六、 日常写博客与管理流程"></a>六、 日常写博客与管理流程</h2><p>以后写文章和维护博客的核心工作流非常简单：</p>
+<ol>
+<li><p><strong>新建一篇文章</strong>：<br>在博客根目录下运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;我的第一篇博客&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行后，系统会在 <code>source/_posts/</code> 目录下创建一个名为 <code>我的第一篇博客.md</code> 的 Markdown 文件。</p>
+</li>
+<li><p><strong>编辑文章</strong>：<br>使用 Markdown 编辑器（如 VS Code、Typora）打开该文件，编写你的内容并保存。</p>
+</li>
+<li><p><strong>本地预览</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>在本地 <code>http://localhost:4000</code> 检查效果无误后关闭服务器。</p>
+</li>
+<li><p><strong>一键发布</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p><em>(注：<code>hexo g -d</code> 是 <code>hexo generate</code> 和 <code>hexo deploy</code> 的合体简写)</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="七、-进阶与美化建议"><a href="#七、-进阶与美化建议" class="headerlink" title="七、 进阶与美化建议"></a>七、 进阶与美化建议</h2><ul>
+<li><strong>更换精美主题</strong>：Hexo 默认主题比较简陋，你可以访问 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo Themes 官网</a>挑选喜欢的主题（如 NexT、Fluid、Stellar 等），按照主题文档将其下载到 <code>themes/</code> 目录并在 <code>_config.yml</code> 中启用。</li>
+<li><strong>图床配置</strong>：建议使用 GitHub 仓库、Gitee 或第三方图床（如 SM.MS、PicGo）来管理博客中的图片，避免本地路径失效。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/14/%E5%88%A9%E7%94%A8github-hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" data-id="cuidEBeQf8letNagyJyjiomKT" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/14/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2026-10-14T01:40:11.198Z" itemprop="datePublished">2026-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/10/14/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/14/hello-world/" data-id="cuidJ2iih96r0-TEur1g5veec" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/14/%E5%88%A9%E7%94%A8github-hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
