@@ -9,12 +9,12 @@
   <meta name="description" content="在进行开源项目开发或从 GitHub 拉取代码时，网络问题常常会让人头疼。通过配置 Git 代理，我们可以顺畅地加速代码的克隆与拉取。本文将带你快速掌握如何针对全局或特定仓库配置、查看以及清理 Git 代理。 -– 一、 前提条件在配置代理之前，你需要确认两件事：  本地代理软件已运行：例如 Clash、V2Ray、Shadowrocket 等。 代理软件监听的端口：默认通常是 7890、1080">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开发者必备：如何优雅地开启、查询和关闭 Git 代理">
-<meta property="og:url" content="http://lingqin.github.io/2026/10/14/git_proxy_guide/index.html">
+<meta property="og:url" content="http://lingqin.github.io/2026/10/15/git_proxy_guide/index.html">
 <meta property="og:site_name" content="Miles的技术分享">
 <meta property="og:description" content="在进行开源项目开发或从 GitHub 拉取代码时，网络问题常常会让人头疼。通过配置 Git 代理，我们可以顺畅地加速代码的克隆与拉取。本文将带你快速掌握如何针对全局或特定仓库配置、查看以及清理 Git 代理。 -– 一、 前提条件在配置代理之前，你需要确认两件事：  本地代理软件已运行：例如 Clash、V2Ray、Shadowrocket 等。 代理软件监听的端口：默认通常是 7890、1080">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-10-14T02:41:52.466Z">
-<meta property="article:modified_time" content="2026-10-14T02:48:16.004Z">
+<meta property="article:published_time" content="2026-10-15T00:44:39.601Z">
+<meta property="article:modified_time" content="2026-10-15T00:44:39.602Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -75,8 +75,8 @@
       <div class="outer">
         <section id="main"><article id="post-git_proxy_guide" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2026/10/14/git_proxy_guide/" class="article-date">
-  <time class="dt-published" datetime="2026-10-14T02:41:52.466Z" itemprop="datePublished">2026-10-14</time>
+    <a href="/2026/10/15/git_proxy_guide/" class="article-date">
+  <time class="dt-published" datetime="2026-10-15T00:44:39.601Z" itemprop="datePublished">2026-10-15</time>
 </a>
     
   </div>
@@ -104,14 +104,18 @@
 </ol>
 <p>-–</p>
 <h2 id="二、-开启-Git-代理"><a href="#二、-开启-Git-代理" class="headerlink" title="二、 开启 Git 代理"></a>二、 开启 Git 代理</h2><p>根据你的需求，代理可以设置为<strong>全局生效</strong>（所有 Git 仓库）或<strong>仅当前仓库生效</strong>。</p>
-<h3 id="1-全局配置代理（推荐用于日常开发）"><a href="#1-全局配置代理（推荐用于日常开发）" class="headerlink" title="1. 全局配置代理（推荐用于日常开发）"></a>1. 全局配置代理（推荐用于日常开发）</h3><p>打开终端（Terminal 或 CMD&#x2F;PowerShell），运行以下命令。请将 <code>7890</code> 替换为你本地代理软件实际的端口号。</p>
-<h4 id="支持-HTTP-HTTPS-协议："><a href="#支持-HTTP-HTTPS-协议：" class="headerlink" title="支持 HTTP &#x2F; HTTPS 协议："></a>支持 HTTP &#x2F; HTTPS 协议：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h3 id="1-全局配置代理（推荐用于日常开发）"><a href="#1-全局配置代理（推荐用于日常开发）" class="headerlink" title="1. 全局配置代理（推荐用于日常开发）"></a>1. 全局配置代理（推荐用于日常开发）</h3><p>打开终端（Terminal 或 CMD&#x2F;PowerShell），运行以下命令。请将 <code>7897</code> 替换为你本地代理软件实际的端口号。</p>
+<h4 id="支持-HTTP-HTTPS-协议："><a href="#支持-HTTP-HTTPS-协议：" class="headerlink" title="支持 HTTP &#x2F; HTTPS 协议："></a>支持 HTTP &#x2F; HTTPS 协议：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7897</span><br><span class="line">git config --global https.proxy https://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
 
-<h4 id="支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）："><a href="#支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）：" class="headerlink" title="支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）："></a>支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h4 id="支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）："><a href="#支持-SOCKS5-协议（如果你的代理使用的是-SOCKS5）：" class="headerlink" title="支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）："></a>支持 SOCKS5 协议（如果你的代理使用的是 SOCKS5）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:7897</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
 
 <p>-–</p>
 <h3 id="2-局部配置代理（仅对当前仓库生效）"><a href="#2-局部配置代理（仅对当前仓库生效）" class="headerlink" title="2. 局部配置代理（仅对当前仓库生效）"></a>2. 局部配置代理（仅对当前仓库生效）</h3><p>如果你只想让某个特定的仓库走代理，进入该仓库的根目录，去掉 <code>--global</code> 参数执行即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.proxy http://127.0.0.1:7890</span><br><span class="line">git config https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.proxy http://127.0.0.1:7897</span><br><span class="line">git config https.proxy http://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
+
+<p>-–</p>
+<h3 id="3-仅对github代理"><a href="#3-仅对github代理" class="headerlink" title="3. 仅对github代理"></a>3. 仅对github代理</h3><p>如果挂了全局代理，克隆coding之类的国内仓库会变慢，所以我建议使用如下命令，只对GitHub进行代理，对国内的仓库不影响：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.https://github.com.proxy https://127.0.0.1:7897</span><br><span class="line">git config --global https.https://github.com.proxy https://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
 
 <p>-–</p>
 <h2 id="三、-查询当前的-Git-代理状态"><a href="#三、-查询当前的-Git-代理状态" class="headerlink" title="三、 查询当前的 Git 代理状态"></a>三、 查询当前的 Git 代理状态</h2><p>如果不确定当前是否已经成功配置了代理，或者想检查代理的端口是否正确，可以通过以下命令进行查询。</p>
@@ -120,6 +124,9 @@
 <h3 id="2-查询当前仓库代理配置"><a href="#2-查询当前仓库代理配置" class="headerlink" title="2. 查询当前仓库代理配置"></a>2. 查询当前仓库代理配置</h3><p>在仓库目录下执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --get http.proxy</span><br><span class="line">git config --get https.proxy</span><br></pre></td></tr></table></figure>
 
+<h3 id="3-查询所有代理配置"><a href="#3-查询所有代理配置" class="headerlink" title="3. 查询所有代理配置"></a>3. 查询所有代理配置</h3><p>在仓库目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global -l</span><br></pre></td></tr></table></figure>
+
 <p><em>注：如果终端没有任何输出，说明当前级别下没有设置代理。</em></p>
 <p>-–</p>
 <h2 id="四、-关闭与清除-Git-代理"><a href="#四、-关闭与清除-Git-代理" class="headerlink" title="四、 关闭与清除 Git 代理"></a>四、 关闭与清除 Git 代理</h2><p>当网络环境改善，或者代理软件关闭导致 Git 出现 <code>Connection refused</code> 报错时，我们需要及时关闭或清除代理配置。</p>
@@ -127,6 +134,9 @@
 
 <h3 id="2-局部清除代理"><a href="#2-局部清除代理" class="headerlink" title="2. 局部清除代理"></a>2. 局部清除代理</h3><p>在对应的仓库目录下执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-github清除代理"><a href="#3-github清除代理" class="headerlink" title="3. github清除代理"></a>3. github清除代理</h3><p>在对应的仓库目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.https://github.com.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.https://github.com.proxy</span><br></pre></td></tr></table></figure>
 
 <p>-–</p>
 <h2 id="五、-常见排错小贴士"><a href="#五、-常见排错小贴士" class="headerlink" title="五、 常见排错小贴士"></a>五、 常见排错小贴士</h2><ol>
@@ -137,11 +147,72 @@
 <ol start="2">
 <li><strong>GitHub 走 SSH 协议不生效</strong>：<br>本文介绍的 <code>http.proxy</code> 仅对 <code>http://</code> 和 <code>https://</code> 开头的仓库链接生效。如果你的远程仓库使用的是 <code>git@github.com:...</code> 这种 SSH 链接，需要通过修改 <code>\~/.ssh/config</code> 文件来配置 ProxyCommand。</li>
 </ol>
+<h2 id="六、记录自己遇到的问题"><a href="#六、记录自己遇到的问题" class="headerlink" title="六、记录自己遇到的问题"></a>六、记录自己遇到的问题</h2><p>执行上述操作后报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/xxx/&#x27;: OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to 127.0.0.1:7897</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、检查-7897-端口是否正在监听"><a href="#1、检查-7897-端口是否正在监听" class="headerlink" title="1、检查 7897 端口是否正在监听"></a>1、检查 7897 端口是否正在监听</h3><p>在 PowerShell 中执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test-NetConnection 127.0.0.1 -Port 7897</span><br></pre></td></tr></table></figure>
+
+<p>查看输出中的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TcpTestSucceeded : True</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>True</code>：端口可以连接，但不代表代理协议正确或代理能够访问 GitHub。</p>
+</li>
+<li><p><code>False</code>：优先检查代理软件是否启动、端口是否设置正确。</p>
+</li>
+</ul>
+<p>初步结论：Clash Verge 的本地 7897 端口正常监听，但 Git 的代理协议配置很可能不正确。</p>
+<p>证据有两点：</p>
+<ul>
+<li><p><code>TcpTestSucceeded : True</code>：说明 Windows 可以连接本机 <code>127.0.0.1:7897</code>，因此端口并没有简单地处于关闭状态。</p>
+</li>
+<li><p>Clash Verge 的端口设置确实是 <code>7897</code>，而 Git 当前两条代理配置都使用了 <code>https://127.0.0.1:7897</code>。</p>
+</li>
+</ul>
+<p>这并不能完全证明代理协议就是唯一原因，但它是目前最值得优先排查的地方。</p>
+<h3 id="2、先修改-Git-代理配置"><a href="#2、先修改-Git-代理配置" class="headerlink" title="2、先修改 Git 代理配置"></a>2、先修改 Git 代理配置</h3><p>请直接在 PowerShell 中依次执行下面两条命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.https://github.com.proxy http://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset https.https://github.com.proxy</span><br></pre></td></tr></table></figure>
+
+<p>解释一下：</p>
+<ul>
+<li><p>第一条将 GitHub 的代理地址从 <code>https://</code> 改为 <code>http://</code>。</p>
+</li>
+<li><p>第二条删除多余的 <code>https.https://github.com.proxy</code> 配置。Git 的 HTTP&#x2F;HTTPS 请求统一使用 <code>http</code> 配置项管理代理。</p>
+</li>
+</ul>
+<p>注意：这里的 <code>http://</code> 是指 Git 连接本地代理的协议，并不代表访问 GitHub 时不使用 HTTPS。</p>
+<h3 id="3、重新测试-GitHub-连接"><a href="#3、重新测试-GitHub-连接" class="headerlink" title="3、重新测试 GitHub 连接"></a>3、重新测试 GitHub 连接</h3><p>先执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-remote https://github.com/xxx</span><br></pre></td></tr></table></figure>
+
+<p>如果正常，应该看到类似下面的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;提交哈希&gt;    HEAD</span><br><span class="line">&lt;提交哈希&gt;    refs/heads/main</span><br></pre></td></tr></table></figure>
+
+<p>具体分支名称可能不同。</p>
+<p>如果测试成功，再执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、如果仍然失败"><a href="#4、如果仍然失败" class="headerlink" title="4、如果仍然失败"></a>4、如果仍然失败</h3><p>继续执行下面的命令，直接测试 Clash Verge 能否代理访问 GitHub：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe -I -x http://127.0.0.1:7897 https://github.com</span><br></pre></td></tr></table></figure>
+
+<p>根据结果判断：</p>
+<ul>
+<li><p>返回 <code>HTTP/1.1 200 Connection established</code>，随后出现 GitHub 的 HTTP 响应：说明代理隧道基本正常。</p>
+</li>
+<li><p>返回 <code>Failed to connect</code> 或连接超时：检查 Clash Verge 的代理运行状态及监听端口。</p>
+</li>
+<li><p>返回 <code>407 Proxy Authentication Required</code>：检查代理是否要求认证。</p>
+</li>
+<li><p>出现 TLS 或 SSL 错误：继续检查代理节点、转发规则和 TLS 连接。</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lingqin.github.io/2026/10/14/git_proxy_guide/" data-id="cuidLb8ZfQ81H5cxDqZ5spB6i" data-title="开发者必备：如何优雅地开启、查询和关闭 Git 代理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://lingqin.github.io/2026/10/15/git_proxy_guide/" data-id="cuidKckLjbtrBrTYn_CxbXORW" data-title="开发者必备：如何优雅地开启、查询和关闭 Git 代理" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -150,6 +221,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2026/10/15/Codex%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Codex安装指南
+        
+      </div>
+    </a>
   
   
     <a href="/2026/10/14/%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8-GitHub-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
@@ -192,7 +272,11 @@
       <ul>
         
           <li>
-            <a href="/2026/10/14/git_proxy_guide/">开发者必备：如何优雅地开启、查询和关闭 Git 代理</a>
+            <a href="/2026/10/15/Codex%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">Codex安装指南</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/15/git_proxy_guide/">开发者必备：如何优雅地开启、查询和关闭 Git 代理</a>
           </li>
         
           <li>
